@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Puppy and Kitty</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    .header-container {
+      display: flex;
+      flex-direction: row;
+      background-color: #FFA500;
+      height: 80px;
+      align-items: center;
+      border: 3px solid black;
+    }
+    .header {
+      display: flex;
+      
+      align-items: center;
+      padding: 0.5rem 1rem;
+      flex-grow: 1;
+    }
+    .header img {
+      height: 60px;
+      width: auto;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .time-container {
+      margin-left: auto;
+      padding-right: 1rem;
+    }
+    .main-content {
+      display: flex;
+      flex: 1;
+      width: 100%;
+    }
+    nav {
+      background: white;
+      border-right: 2px solid black;
+      min-width: 200px;
+    }
+    nav a.nav-link {
+      color: black;
+      border-bottom: 2px solid black;
+      padding: 1rem;
+      text-align: center;
+      display: block;
+    }
+    nav a.nav-link.active, nav a.nav-link:hover {
+      background-color: maroon;
+      color: white;
+    }
+    article {
+      flex: 1;
+      background-color: grey;
+      padding: 2rem;
+      border-left: 2px solid black;
+    }
+    footer {
+      text-align: center;
+      padding: 1%;
+      background-color: Orange;
+      color: white;
+      height: 80px;
+      flex-shrink: 0;
+      font-family: Arial, sans-serif;
+      border: 3px solid black;
+      width: 100%;
+    }
+    fieldset.orangeMaroon {
+        background-color: Orange;
+        border: 5px solid Maroon;
+        color: black;
+        font-weight: bold;
+        padding: 1rem; 
+    }
+    @media (max-width: 768px) {
+      nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid black;
+        padding: 0;
+      }
+      nav a.nav-link {
+        border-bottom: 1px solid black;
+        padding: 0.5rem;
+        flex: 1;
+      }
+      .main-content {
+        flex-direction: column;
+      }
+      article {
+        border-left: none;
+      }
+    }
+  </style>
+  <script>
+  function formValidation() {
+  let animalCompleted = false;
+  let breedCompleted = false;
+  let genderCompleted = false;
+  let dogCompleted = false;
+  let catCompleted = false;
+  let kidCompleted = false;
+  let ageCompleted = false;
+  let aspirationsCompleted = false;
+  let firstNameCompleted = false;
+  let lastNameCompleted = false;
+  let mailCompleted = false;
+
+  // verify if an animal is chosen
+  if (document.getElementById('doggy').checked || document.getElementById('kitten').checked) {
+    animalCompleted = true;
+  } else {
+    alert("Please select the animal of choice(dog or cat).");
+    return false;
+  }
+  
+  // verify if a breed of cat or dog is chosen
+  if (document.getElementById('dogCatbreed').value !== "" || document.getElementById('mixed').checked ) {
+    breedCompleted = true;
+  } else {
+    alert("Please specify the breed of the animal or select 'Mixed breed'.");
+    return false;
+  }
+
+  // verify if an age is chosen
+  if (document.getElementById('age').value !== "") {
+    ageCompleted = true;
+  } else {
+    alert("Please select an age(0-2 year, 3-5  years, older than 5 years or dosen't matter).");
+    return false;
+  }
+
+  // verify if a gender is chosen
+  if (document.getElementById('girl').checked || document.getElementById('boy').checked) {
+    genderCompleted = true;
+  } else {
+    alert("Please decide on the gender of the animal.");
+    return false;
+  }
+
+  // verify if needs to get along with other dogs part is completed
+  if (document.getElementById('dogAgree').checked || document.getElementById('dogNope').checked) {
+    dogCompleted = true;
+  } else {
+    alert("Please specify if the animal needs to get along with other dogs");
+    return false;
+  }
+
+  // verify if the animal needs to get along with other cats part is completed
+  if (document.getElementById('CatAgree').checked || document.getElementById('CatNope').checked) {
+    catCompleted = true;
+  } else {
+    alert("Please tell us if the animal needs to get along with other cats.");
+    return false;
+  }
+
+  // verify if the animal needs to get along with small children part is completed
+  if (document.getElementById('kidSuitable').checked || document.getElementById('kidUnsuitable').checked) {
+    kidCompleted = true;
+  } else {
+    alert("Please tell us if the animal needs to get along with small children.");
+    return false;
+  }
+
+  // verify if something is written inside the textarea 
+  const textArea = document.getElementById('aspirations');
+  if (textArea.value.trim().length === 0) {
+    alert("Please write something on the section where you tell us about your animal.");
+    return false;
+  } else {
+    aspirationsCompleted = true;
+  }
+
+  //verify if the first name is typed
+  if (document.getElementById('firstName').value !== "") {
+    firstNameCompleted = true;
+  } else {
+    alert("Please write the first name of the owner.");
+    return false;
+  }
+
+  //verify if the last name is typed
+  if (document.getElementById('lastName').value !== "") {
+    lastNameCompleted = true;
+  } else {
+    alert("Please wrtie the last name of the owner.");
+    return false;
+  }
+
+  //verify if the email was entered
+  if (document.getElementById('email').value !== "") {
+    mailCompleted = true;
+  } else {
+    alert("Please write the Email of the owner.");
+    return false;
+  }
+
+  // verify if a valid email was entered
+  const email = document.getElementById('email').value;
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (regex.test(email)) {
+    emailValid = true;
+  } else {
+    alert("Please enter a valid email address format.");
+    return false;
+  }
+
+  // return true if every part is completed
+  if (animalCompleted && breedCompleted && genderCompleted && dogCompleted && catCompleted && kidCompleted && ageCompleted && aspirationsCompleted && firstNameCompleted && lastNameCompleted && mailCompleted) {
+    return true;
+  }
+}
+  </script>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <div class="main-content">
+    <nav class="nav flex-column">
+      <a class="nav-link" href="/">Home page</a>
+      <a class="nav-link" href="/findDogCat">Find a dog/cat</a>
+      <a class="nav-link" href="/dogCare">Dog care</a>
+      <a class="nav-link" href="/catCare">Cat care</a>
+      <a class="nav-link" href="/createAccount">Create an account</a>
+      <a class="nav-link active" href="/petGiveAway">Have a pet to give away</a>
+      <a class="nav-link" href="/LogOut">LogOut</a>
+      <a class="nav-link" href="/contactUs">Contact Us</a>
+    </nav>
+
+    <article class="container-fluid">
+        <h2><b>Have a pet to give away?</b></h2>
+    <form action="/submitPetDetails" method="post" onsubmit="return formValidation()">
+	<fieldset class="orangeMaroon">
+		<legend>Have a pet to give away</legend>
+    <p>
+      Cat or Dog:<br>
+      <label for="doggy"> <input type = "radio" id="doggy" name = "animalType"
+        value = "dog" /> Dog
+      </label>
+      <label for="kitten"> <input type = "radio" id="kitten" name = "animalType"
+        value = "cat" /> Cat
+      </label>
+      <br>
+    </p>
+    <p>
+      <label for="dogCatbreed"> Breed of dog/cat:<br>
+        <input type = "text" id="dogCatbreed" name = "breedDogCat"
+            size = "20" /> </label><br>
+      <label for="mixed"> <input type = "radio" id="mixed" name = "breedDogCat"
+        value = "mixed Breed" /> Mixed breed
+      </label>
+      <br>
+    </p>
+    <p>
+      Age of animal:<br>
+      <select id="age" name="age">
+        <option> 0-2 years</option>
+        <option> 3-5 years</option>
+        <option> Older than 5 years</option>
+      </select>
+    </p>
+    <p>
+      Animal gender:<br>
+      <label for="girl"> <input type = "radio" id="girl" name = "typeGender"
+        value = "Female" /> Female
+      </label>
+      <label for="boy"> <input type = "radio" id="boy" name = "typeGender"
+        value = "Male" /> Male
+      </label>
+      <br>
+    </p>
+    <p>
+      Gets along with other dogs?<br>
+      <label for="dogAgree"> <input type = "radio" id="dogAgree" name = "alongDog"
+        value = "Yes" /> Yes
+      </label>
+      <label for="dogNope"> <input type = "radio" id="dogNope" name = "alongDog"
+        value = "No" /> No
+      </label>
+      <br>
+    </p>
+    <p>
+      Gets along with other cats?<br>
+      <label for="CatAgree"> <input type = "radio" id="CatAgree" name = "alongCat"
+        value = "Yes" /> Yes
+      </label>
+      <label for="CatNope"> <input type = "radio" id="CatNope" name = "alongCat"
+        value = "No" /> No
+      </label>
+      <br>
+    </p>
+    <p>
+      Suitable for a family with small children?<br>
+      <label for="kidSuitable"> <input type = "radio" id="kidSuitable" name = "alongChildren"
+        value = "Yes" /> Yes
+      </label>
+      <label for="kidUnsuitable"> <input type = "radio" id="kidUnsuitable" name = "alongChildren"
+        value = "No" /> No
+      </label>
+      <br>
+    </p>
+    <p>
+      <label for="aspirations">Tell us about your animal:</label><br>
+      <textarea id="aspirations" name="aspirations" rows="3" cols="40"></textarea>
+    </p>
+    <p>
+      <label for="firstName">First Name of Owner:<br>
+        <input type="text" id="firstName" name="name1" size="20" />
+      </label>
+      <br>
+      <label for="lastName">Family Name of Owner:<br>
+        <input type="text" id="lastName" name="name2" size="20" />
+      </label>
+      <br>
+      <label for="email">Email of Owner:<br>
+        <input type="text" id="email" name="emailOwner" size="20" />
+      </label>
+      <br>
+    </p>
+	</fieldset>
+	<br>
+	<p><b>Thank you for taking time to fill out our survey!</b></p>
+	<p>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="reset" class="btn btn-primary">Reset</button>
+	</p>
+    </form>
+    <% if (typeof message !== 'undefined') { %>
+      <div class="alert alert-info mt-3"><%= message %></div>
+    <% } %>
+    </article>
+  </div>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

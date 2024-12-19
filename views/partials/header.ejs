@@ -1,0 +1,19 @@
+<div class="header-container">
+  <div class="header">
+    <h1>Puppy & Kitty</h1>
+    <a href="/">
+      <img src="/images/puppykitty5.png" alt="logo">
+    </a>
+  </div>
+  <p id="time" class="time-container"></p>
+</div>
+
+<script>
+  function callDateTime() {
+    let currentDate = new Date().toDateString();
+    let currentTime = new Date().toLocaleTimeString();
+    document.getElementById("time").innerHTML = currentDate + " " + currentTime;
+  }
+  setInterval(function() { callDateTime() }, 1000);
+  callDateTime(); 
+</script>
